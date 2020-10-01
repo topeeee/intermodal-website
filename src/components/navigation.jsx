@@ -49,13 +49,28 @@ export class Navigation extends Component {
                 </a>
               </li>
               <li>
-                <a href="#about" className="page-scroll">
-                  About
+                <a href="#operatorlogin" className="page-scroll">
+                  Signup
                 </a>
               </li>
               <li>
-                <a href="#operatorlogin" className="page-scroll">
-                  Signup
+                <a href="http://165.22.116.11:7057/lamata/login" className="page-scroll">
+                  Lamata Login
+                </a>
+              </li>
+              <li>
+                <a href="http://165.22.116.11:7057/operator/login" className="page-scroll">
+                  Operator Login
+                </a>
+              </li>
+              <li>
+                <a href="http://165.22.116.11:7057/partner/login" className="page-scroll">
+                  Partner Login
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="page-scroll">
+                  About
                 </a>
               </li>
               <li>
