@@ -23,7 +23,7 @@ const OperatorLogin = () => {
 
 const createOperator = async () => {
     setIsLoading(true)
-  const body = {pin, name, usernameMain:email, email, phoneNo, officeAddress, status, numberOfVehicle, contactName, contactPhoneNo, contactEmail};
+  const body = {pin, name, usernameMain:email, email, phoneNo:'+234' + phoneNo.substr(1), officeAddress, status, numberOfVehicle, contactName, contactPhoneNo, contactEmail};
   try {
     await axios.post("http://165.22.116.11:7046/api/me/operators/", body,
         {
@@ -43,11 +43,14 @@ const createOperator = async () => {
   }
 }
 
-
-
 useEffect(()=> {
   getToken();
 },[])
+
+  const onSubmit = (e)=> {
+    e.preventDefault();
+    createOperator();
+  }
 
   return (
         <div id="operatorlogin" style={{minHeight: '100vh'}}>
@@ -57,43 +60,43 @@ useEffect(()=> {
             <div className="col-xs-12 col-md-6">
               <div className="about-text">
                 <h3 className="text-warning">Sign up as an Operator</h3>
-                {loginRes &&
-                <div className="text-success w-100 text-primary text-capitalize bg-danger" style={{marginBottom: "30px", padding: '10px'}}>{loginRes}</div>
-                }
-                <form onSubmit={createOperator}>
+                <form onSubmit={onSubmit}>
                   <div className="form-group" style={{marginBottom: "30px"}}>
                     {/*<label htmlFor="exampleInputEmail1">Organisation Name</label>*/}
-                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="text" className="form-control" aria-describedby="emailHelp"
                            placeholder="Organisation name"  name="name" onChange={onChange}  value={name}  required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
                     {/*<label htmlFor="exampleInputEmail1">Contact Phone Number </label>*/}
-                    <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="number" className="form-control" aria-describedby="emailHelp"
                            placeholder="Organisation phone number " name="phoneNo" onChange={onChange} value={phoneNo}  required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
-                    {/*<label htmlFor="exampleInputEmail1">Organisation Email Address</label>*/}<input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    {/*<label htmlFor="exampleInputEmail1">Organisation Email Address</label>*/}<input type="email" className="form-control" aria-describedby="emailHelp"
                            placeholder="Organisation email address"  name="email" onChange={onChange}  value={email} required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
                     {/*<label htmlFor="exampleInputEmail1">Office Address</label>*/}
-                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="text" className="form-control" aria-describedby="emailHelp"
                            placeholder="Office address" name="officeAddress" onChange={onChange}  value={officeAddress} required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
                     {/*<label htmlFor="exampleInputEmail1">Organisation Name</label>*/}
-                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="text" className="form-control" aria-describedby="emailHelp"
                            placeholder="Contact name" name="contactName" onChange={onChange} value={contactName} required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
                     {/*<label htmlFor="exampleInputEmail1">Contact Phone Number </label>*/}
-                    <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="number" className="form-control" aria-describedby="emailHelp"
                            placeholder="Contact phone number " name="contactPhoneNo" onChange={onChange} value={contactPhoneNo} required/>
                   </div>
                   <div className="form-group" style={{marginBottom: "30px"}}>
-                    {/*<label htmlFor="exampleInputEmail1">Organisation Email Address</label>*/}<input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    {/*<label htmlFor="exampleInputEmail1">Organisation Email Address</label>*/}<input type="email" className="form-control" aria-describedby="emailHelp"
                                                                                                        placeholder="Contact Person email" name="contactEmail" onChange={onChange} value={contactEmail} required/>
                   </div>
+                  {loginRes &&
+                  <div className="text-success w-100 text-primary text-capitalize bg-danger" style={{marginBottom: "30px", padding: '10px'}}>{loginRes}</div>
+                  }
                   <div style={{display:"flex", alignItems:"center", justifyContent:"center", width: "100%"}}>
                     <button type="submit" className="btn btn-warning">Submit {isLoading && <i className="fa fa-spinner fa-spin"></i>}</button>
 
